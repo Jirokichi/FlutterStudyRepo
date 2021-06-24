@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'client.dart';
 
 class ClientPage extends StatefulWidget {
+  final String hostname;
+  ClientPage({required this.hostname}) : super();
   @override
   _ClientPageState createState() => _ClientPageState();
 }
@@ -17,7 +19,7 @@ class _ClientPageState extends State<ClientPage> {
     super.initState();
 
     client = Client(
-      hostname: "192.168.0.29",
+      hostname: widget.hostname,
       port: 4040,
       onData: this.onData,
       onError: this.onError,
@@ -75,7 +77,7 @@ class _ClientPageState extends State<ClientPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Server'),
+        title: Text('Server(Connect to ${widget.hostname})'),
         centerTitle: true,
         automaticallyImplyLeading: false,
         leading: IconButton(
