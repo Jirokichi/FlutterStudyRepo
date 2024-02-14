@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
@@ -132,7 +133,8 @@ class _ServerPageState extends State<ServerPage> {
                         await server.stop();
                         this.serverLogs.clear();
                       } else {
-                        await server.start();
+                        await server.start(
+                            ipAddress: InternetAddress.anyIPv4.address);
                       }
                       setState(() {});
                     },

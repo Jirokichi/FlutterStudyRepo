@@ -18,7 +18,7 @@ class Server {
     runZoned(() async {
       server = await ServerSocket.bind(ipAddress, 4040);
       this.running = true;
-      server?.listen(onRequest);
+      server?.listen(_onRequest);
       this.onData(Uint8List.fromList(
           'Server($ipAddress) listening on port 4040'.codeUnits));
     }, onError: (e) {
@@ -39,7 +39,7 @@ class Server {
     }
   }
 
-  onRequest(Socket socket) {
+  _onRequest(Socket socket) {
     if (!sockets.contains(socket)) {
       sockets.add(socket);
     }
